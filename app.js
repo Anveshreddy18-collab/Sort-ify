@@ -13,27 +13,28 @@ function draw(array) {
   });
 }
 
-function generateArray(numEls) {
+function generateArray() {
+  let numEls = document.querySelector('#choose').value;
   let newArr = [];
-  for(let i = 0; i < numEls; i++){
+  for (let i = 0; i < numEls; i++) {
     let foundUnique = false;
-    while(foundUnique != true){
+    while (foundUnique != true) {
       let randNum = Math.round(Math.random() * 25) + 5;
-      if(newArr.includes(randNum) != true){
+      if (newArr.includes(randNum) != true) {
         newArr.push(randNum);
         foundUnique = true;
       }
     }
   }
   let sorted = true;
-  for(let i = 0; i < numEls - 1; i++){
-    if(newArr[i] > newArr[i+1]){
+  for (let i = 0; i < numEls - 1; i++) {
+    if (newArr[i] > newArr[i + 1]) {
       sorted = false;
       break;
     }
   }
 
-  if(sorted === true){
+  if (sorted === true) {
     newArr = [];
     generateArray(numEls);
   }
@@ -41,9 +42,39 @@ function generateArray(numEls) {
   return newArr;
 }
 
-let dropDown = document.querySelector('#choose');
+// declared with * makes it a generator
+// (note: does not really sort)
+function * bubbleSort (array) {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array.length; j++) {
+      if(array[j] > array[j+1]){
+        let temp = array[j]
+        array[j] = array[j + 1];
+        array[j+1] = temp;
+      }
+      yield array // return array as value, pause until next() called
+    }
+  }
+}
 
-draw(generateArray(dropDown.value));
-dropDown.addEventListener('change', () =>{
-  draw(generateArray(dropDown.value));
-});
+let delay = 1000 // ms (sped up for demo)
+let iterator = bubbleSort(generateArray())
+
+function drawLoop () {
+  let next = iterator.next() // pull from yield
+  if (!next.done) {
+    draw(next.value)
+  } else {
+    clearInterval(intervalId)
+    document.querySelectorAll('.bar')
+      .forEach(bar => bar.style.backgroundColor = 'red')
+  }
+}
+
+let btn = document.querySelector('#viz');
+
+btn.addEventListener('click', () => {
+  drawLoop();
+})
+
+let intervalId = setInterval(drawLoop, delay)
