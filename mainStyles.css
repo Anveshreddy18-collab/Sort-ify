@@ -68,14 +68,15 @@ body {
   border: 5px solid white;
   border-radius: 20px;
   display: grid;
-  grid-template-columns: 80% 20%;
+  grid-template-columns: 70% 25%;
+  column-gap: 5%;
 
   justify-self: center;
   align-self: center;
 }
 
 .choose{
-  margin-right: 10px;
+  margin-right: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,7 +97,20 @@ body {
   width: auto;
   border-radius: 3px;
   padding: 3px;
+}
 
+#stop {
+  margin-top: 10px;
+  font-size: 12px;
+  width: 50px;
+  height: 25px;
+  font-weight: 300px;
+  background-color: #7845a7;
+  color: white;
+}
+
+#stop:hover {
+  background-color: #512a75;
 }
 
 label {
@@ -111,6 +125,7 @@ select{
   border: none;
   padding: 0 5px;
   margin: 10px 0;
+  margin-bottom: 35px;
 }
 
 
@@ -142,7 +157,7 @@ option {
   min-width: 15px;
   max-width: 50px;
   background-color: #ff85d5;
-  margin-right: 15px;
+  margin-right: 10px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -151,8 +166,10 @@ option {
 }
 
 #sortType{
+  font-size: 1.7rem;
   color: #ff85d5;
   text-align: center;
+  margin-bottom: 30px;
 }
 
 .arr-val{
@@ -160,4 +177,31 @@ option {
   text-align: center;
   font-size: 70%;
   font-weight: 600;
+}
+
+.right {
+  width: 100%;
+  /* border: 1px solid white; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.right button {
+  cursor: pointer;
+  margin-top: 5%;
+  width: 120px;
+  height: 30px;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+  background-color: rgb(255, 116, 192);
+  border: 1px;
+  border-radius: 5px;
+  color: #53277D;
+  outline: none;
+}
+
+.right button:hover{
+  background-color: rgb(255, 139, 203);
 }

@@ -14,8 +14,8 @@ btn.addEventListener('click', () => {
         .forEach(bar => bar.style.backgroundColor = '#41d6ff;')
     }
   }
-  
-  let delay = 100 // ms (sped up for demo)
+
+  let delay = 90 // ms (sped up for demo)
   let array = generateArray();
   let iterator = bubbleSort(array)
 
@@ -36,7 +36,7 @@ function draw(array) {
     val.className = "arr-val";
     bar.className = "bar";
     bar.style.height = 20 + value * 10 + "px";
-    bar.style.width = Math.round(200 / array.length) + "px";
+    bar.style.width = Math.round(220 / array.length) + "px";
   });
 }
 
