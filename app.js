@@ -1,3 +1,30 @@
+let btn = document.querySelector('#viz');
+let graph = document.querySelector('.inner');
+
+
+btn.addEventListener('click', () => {
+  function drawLoop () {
+    let next = iterator.next() // pull from yield
+    if (!next.done) {
+      draw(next.value)
+    } 
+    else {
+      clearInterval(intervalId)
+      document.querySelectorAll('.bar')
+        .forEach(bar => bar.style.backgroundColor = '#41d6ff;')
+    }
+  }
+  
+  let delay = 100 // ms (sped up for demo)
+  let array = generateArray();
+  let iterator = bubbleSort(array)
+
+
+  let intervalId = setInterval(drawLoop, delay)
+  drawLoop() // so no wait for first paint
+
+})
+
 function draw(array) {
   document.querySelectorAll(".bar").forEach((bar) => bar.remove());
 
@@ -26,15 +53,8 @@ function generateArray() {
       }
     }
   }
-  let sorted = true;
-  for (let i = 0; i < numEls - 1; i++) {
-    if (newArr[i] > newArr[i + 1]) {
-      sorted = false;
-      break;
-    }
-  }
 
-  if (sorted === true) {
+  if (isSorted(newArr) === true) {
     newArr = [];
     generateArray(numEls);
   }
@@ -42,39 +62,29 @@ function generateArray() {
   return newArr;
 }
 
-// declared with * makes it a generator
-// (note: does not really sort)
+function isSorted(newArr){
+  let sorted = true;
+  for (let i = 0; i < newArr.length - 1; i++) {
+    if (newArr[i] > newArr[i + 1]) {
+      sorted = false;
+      break;
+    }
+  }
+  return sorted;
+}
+
 function * bubbleSort (array) {
   for (let i = 0; i < array.length; i++) {
     for (let j = 0; j < array.length; j++) {
       if(array[j] > array[j+1]){
-        let temp = array[j]
+        let temp = array[j];
         array[j] = array[j + 1];
         array[j+1] = temp;
       }
-      yield array // return array as value, pause until next() called
+      yield array;
     }
   }
 }
 
-let delay = 1000 // ms (sped up for demo)
-let iterator = bubbleSort(generateArray())
 
-function drawLoop () {
-  let next = iterator.next() // pull from yield
-  if (!next.done) {
-    draw(next.value)
-  } else {
-    clearInterval(intervalId)
-    document.querySelectorAll('.bar')
-      .forEach(bar => bar.style.backgroundColor = 'red')
-  }
-}
 
-let btn = document.querySelector('#viz');
-
-btn.addEventListener('click', () => {
-  drawLoop();
-})
-
-let intervalId = setInterval(drawLoop, delay)
