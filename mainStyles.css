@@ -56,7 +56,7 @@ body {
 .wrap {
   width: 100%;
   display: grid;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 80% 20%;
   height: 92%;
 }
 
@@ -68,8 +68,8 @@ body {
   border: 5px solid white;
   border-radius: 20px;
   display: grid;
-  grid-template-columns: 70% 25%;
-  column-gap: 5%;
+  grid-template-columns: 74% 24%;
+  column-gap: 2%;
 
   justify-self: center;
   align-self: center;
@@ -97,6 +97,7 @@ body {
   width: auto;
   border-radius: 3px;
   padding: 3px;
+  /* border: 1px solid white; */
 }
 
 #stop {
@@ -119,8 +120,9 @@ label {
 }
 
 select{
-  width: 50px;
+  width: 60px;
   outline: none;
+  font-size: 15px;
   border-radius: 10px;
   border: none;
   padding: 0 5px;
@@ -154,7 +156,7 @@ option {
 }
 
 .bar {
-  min-width: 15px;
+  min-width: 18px;
   max-width: 50px;
   background-color: #ff85d5;
   margin-right: 10px;

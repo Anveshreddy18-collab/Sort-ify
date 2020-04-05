@@ -1,29 +1,36 @@
-let btn = document.querySelector('#viz');
-let graph = document.querySelector('.inner');
+let btn = document.querySelector("#viz");
+let stopBtn = document.querySelector('#stop');
+let graph = document.querySelector(".inner");
 
-
-btn.addEventListener('click', () => {
-  function drawLoop () {
-    let next = iterator.next() // pull from yield
+btn.addEventListener("click", () => {
+  function drawLoop() {
+    let next = iterator.next(); // pull from yield
     if (!next.done) {
-      draw(next.value)
-    } 
-    else {
-      clearInterval(intervalId)
-      document.querySelectorAll('.bar')
-        .forEach(bar => bar.style.backgroundColor = '#41d6ff;')
+      draw(next.value);
+    } else {
+      clearInterval(intervalId);
+      document
+        .querySelectorAll(".bar")
+        .forEach((bar) => (bar.style.backgroundColor = "#41d6ff;"));
     }
   }
+  let numEls = document.querySelector("#choose").value;
 
-  let delay = 90 // ms (sped up for demo)
+  let delayTimes = {
+    '20' : 50,
+    '15' : 75,
+    '10' : 100,
+    '5' : 500
+  };
+
+  let delay = delayTimes[`${numEls}`];
+  console.log(delay); // ms (sped up for demo)
   let array = generateArray();
-  let iterator = bubbleSort(array)
+  let iterator = bubbleSort(array);
 
-
-  let intervalId = setInterval(drawLoop, delay)
-  drawLoop() // so no wait for first paint
-
-})
+  let intervalId = setInterval(drawLoop, delay);
+  drawLoop(); // so no wait for first paint
+});
 
 function draw(array) {
   document.querySelectorAll(".bar").forEach((bar) => bar.remove());
@@ -35,18 +42,18 @@ function draw(array) {
     val.textContent = value;
     val.className = "arr-val";
     bar.className = "bar";
-    bar.style.height = 20 + value * 10 + "px";
+    bar.style.height = 18 + value * 10 + "px";
     bar.style.width = Math.round(220 / array.length) + "px";
   });
 }
 
 function generateArray() {
-  let numEls = document.querySelector('#choose').value;
+  let numEls = document.querySelector("#choose").value;
   let newArr = [];
   for (let i = 0; i < numEls; i++) {
     let foundUnique = false;
     while (foundUnique != true) {
-      let randNum = Math.round(Math.random() * 25) + 5;
+      let randNum = Math.round(Math.random() * 30) + 5;
       if (newArr.includes(randNum) != true) {
         newArr.push(randNum);
         foundUnique = true;
@@ -62,7 +69,7 @@ function generateArray() {
   return newArr;
 }
 
-function isSorted(newArr){
+function isSorted(newArr) {
   let sorted = true;
   for (let i = 0; i < newArr.length - 1; i++) {
     if (newArr[i] > newArr[i + 1]) {
@@ -73,18 +80,15 @@ function isSorted(newArr){
   return sorted;
 }
 
-function * bubbleSort (array) {
+function* bubbleSort(array) {
   for (let i = 0; i < array.length; i++) {
     for (let j = 0; j < array.length; j++) {
-      if(array[j] > array[j+1]){
+      if (array[j] > array[j + 1]) {
         let temp = array[j];
         array[j] = array[j + 1];
-        array[j+1] = temp;
+        array[j + 1] = temp;
       }
       yield array;
     }
   }
 }
-
-
-
