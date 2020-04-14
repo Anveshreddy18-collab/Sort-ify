@@ -64,12 +64,13 @@ body {
   height: 70%;
   background: linear-gradient(to right, #700e83ad, #28063aab);
   /* background-color: #3C1066; */
-  width: 80%;
+  width: 92%;
   border: 5px solid white;
   border-radius: 20px;
   display: grid;
   grid-template-columns: 74% 24%;
   column-gap: 2%;
+  margin-left: 25px;
 
   justify-self: center;
   align-self: center;
@@ -89,6 +90,7 @@ body {
 }
 
 .inner {
+  margin-top: 15px;
   height: 90%;
   display: inline-flex;
   align-items: flex-end;
@@ -156,12 +158,12 @@ option {
 }
 
 .bar {
-  min-width: 18px;
-  max-width: 50px;
+  min-width: 15px;
+  max-width: 100px;
   background-color: #ff85d5;
-  margin-right: 10px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  margin-right: 7px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
 }
 .bar:last-child {
   margin-right: 0;
@@ -187,15 +189,16 @@ option {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .right button {
   cursor: pointer;
-  margin-top: 5%;
+  margin-top: 10%;
   width: 120px;
-  height: 30px;
+  height: 40px;
   font-family: 'Rubik', sans-serif;
+  font-size: 15px;
   font-weight: 500;
   background-color: rgb(255, 116, 192);
   border: 1px;

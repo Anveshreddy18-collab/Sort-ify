@@ -1,8 +1,14 @@
 let btn = document.querySelector("#viz");
 let stopBtn = document.querySelector('#stop');
 let graph = document.querySelector(".inner");
+let stop = false;
+
+stopBtn.addEventListener('click', () => {
+  stop = true;
+})
 
 btn.addEventListener("click", () => {
+  stop = false;
   function drawLoop() {
     let next = iterator.next(); // pull from yield
     if (!next.done) {
@@ -14,13 +20,13 @@ btn.addEventListener("click", () => {
         .forEach((bar) => (bar.style.backgroundColor = "#41d6ff;"));
     }
   }
+
   let numEls = document.querySelector("#choose").value;
 
   let delayTimes = {
-    '20' : 50,
-    '15' : 75,
-    '10' : 100,
-    '5' : 500
+    '30' : 25,
+    '20' : 60,
+    '15' : 75
   };
 
   let delay = delayTimes[`${numEls}`];
@@ -32,6 +38,7 @@ btn.addEventListener("click", () => {
   drawLoop(); // so no wait for first paint
 });
 
+// --- DRAW FUNCTION ---
 function draw(array) {
   document.querySelectorAll(".bar").forEach((bar) => bar.remove());
 
@@ -42,18 +49,19 @@ function draw(array) {
     val.textContent = value;
     val.className = "arr-val";
     bar.className = "bar";
-    bar.style.height = 18 + value * 10 + "px";
-    bar.style.width = Math.round(220 / array.length) + "px";
+    bar.style.height = 20 + value * 3 + "px";
+    bar.style.width = Math.round(350 / array.length) + "px";
   });
 }
 
+// --- GENERATE RANDOM ARRAY ---
 function generateArray() {
   let numEls = document.querySelector("#choose").value;
   let newArr = [];
   for (let i = 0; i < numEls; i++) {
     let foundUnique = false;
     while (foundUnique != true) {
-      let randNum = Math.round(Math.random() * 30) + 5;
+      let randNum = Math.round(Math.random() * 98) + 1;
       if (newArr.includes(randNum) != true) {
         newArr.push(randNum);
         foundUnique = true;
@@ -69,6 +77,7 @@ function generateArray() {
   return newArr;
 }
 
+// --- HELPER TO SEE IF ARRAY IS CORRECTLY SORTED ---
 function isSorted(newArr) {
   let sorted = true;
   for (let i = 0; i < newArr.length - 1; i++) {
@@ -80,6 +89,7 @@ function isSorted(newArr) {
   return sorted;
 }
 
+// --- BUBBLE SORT GENERATOR FUNCTION ---
 function* bubbleSort(array) {
   for (let i = 0; i < array.length; i++) {
     for (let j = 0; j < array.length; j++) {
@@ -89,6 +99,9 @@ function* bubbleSort(array) {
         array[j + 1] = temp;
       }
       yield array;
+      if (stop == true){
+        return;
+      }
     }
   }
 }
