@@ -1,6 +1,16 @@
+// VIZ AND STOP BUTTONS
 let btn = document.querySelector("#viz");
 let stopBtn = document.querySelector('#stop');
+
+// ALGORITHM BUTTONS
+let bubbleButton = document.getElementById('bubbleButton');
+let mergeButton = document.getElementById('mergeButton');
+let quickButton = document.getElementById('quickButton');
+
+// MAIN GRAPH DIV
 let graph = document.querySelector(".inner");
+
+// Global Stop Variable
 let stop = false;
 
 stopBtn.addEventListener('click', () => {
