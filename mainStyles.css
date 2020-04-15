@@ -192,7 +192,7 @@ option {
   align-items: center;
 }
 
-.right button {
+.algBtn {
   cursor: pointer;
   margin-top: 10%;
   width: 120px;
@@ -201,12 +201,14 @@ option {
   font-size: 15px;
   font-weight: 500;
   background-color: rgb(255, 116, 192);
-  border: 1px;
+  border: 5px;
   border-radius: 5px;
   color: #53277D;
   outline: none;
 }
 
-.right button:hover{
+.algBtn:hover{
   background-color: rgb(255, 139, 203);
 }
+
+/* box-shadow: 0px 0px 20px 1px rgb(255, 96, 184); */

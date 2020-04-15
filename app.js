@@ -26,12 +26,26 @@ let activeAlg = {
 // Initialize Active Algorithm to bubble
 activateSort('bubble');
 algTitle.innerHTML = 'Bubble Sort'
-
+bubbleButton.style.boxShadow = '0px 0px 20px 1px rgb(255, 96, 184, .8)';
 
 // Make Each Alg button change the state of the active Alg object
-mergeButton.addEventListener('click', () => {activateSort('merge'); algTitle.innerHTML = mergeButton.textContent;})
-quickButton.addEventListener('click', () => {activateSort('quick'); algTitle.innerHTML = quickButton.textContent;})
-bubbleButton.addEventListener('click', () => {activateSort('bubble'); algTitle.innerHTML = bubbleButton.textContent;})
+bubbleButton.addEventListener('click', () => {
+  activateSort('bubble');
+  algTitle.innerHTML = bubbleButton.textContent;
+  changeColor(bubbleButton, mergeButton, quickButton);
+})
+
+mergeButton.addEventListener('click', () => {
+  activateSort('merge');
+  algTitle.innerHTML = mergeButton.textContent;
+  changeColor(mergeButton, bubbleButton, quickButton);
+})
+
+quickButton.addEventListener('click', () => {
+  activateSort('quick');
+  algTitle.innerHTML = quickButton.textContent;
+  changeColor(quickButton, mergeButton, bubbleButton);
+})
 
 // STOP VISUALIZATION
 stopBtn.addEventListener('click', () => {
@@ -98,6 +112,13 @@ function activateSort(alg){
     'quick' : false
   };
   activeAlg[alg] = 'true';
+}
+
+// Function to change button colors when picked
+function changeColor(btn1, btn2, btn3){
+  btn1.style.boxShadow = '0px 0px 20px 1px rgb(255, 96, 184, .8)';
+  btn2.style.boxShadow = '';
+  btn3.style.boxShadow = '';
 }
 
 // --- DRAW FUNCTION ---
