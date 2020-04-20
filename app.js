@@ -291,5 +291,4 @@ function* quick(arr) {
       return;
     }
   }
-  
 }
