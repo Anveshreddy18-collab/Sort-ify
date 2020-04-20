@@ -16,6 +16,8 @@ let graph = document.querySelector(".inner");
 // Global Stop Variable
 let stop = false;
 
+let curr = [];
+
 // Global Active Alg Object
 let activeAlg = {
   bubble: false,
@@ -81,6 +83,12 @@ btn.addEventListener("click", () => {
     "15": 300,
   };
 
+  let quickDelayTimes = {
+    "30": 400,
+    "20": 450,
+    "15": 500,
+  };
+
   // let delay = delayTimes[`${numEls}`];
   let array = generateArray();
 
@@ -90,12 +98,16 @@ btn.addEventListener("click", () => {
   if (activeAlg["bubble"]) {
     delay = bubbleDelayTimes[`${numEls}`];
     iterator = bubbleSort(array);
-  } else if (activeAlg["merge"]) {
+  } 
+  else if (activeAlg["merge"]) {
     delay = mergeDelayTimes[`${numEls}`];
     iterator = mergeSort(array);
-  } else if (activeAlg["quick"]) {
-    delay = bubbleDelayTimes[`${numEls}`];
-    iterator = quickSort(array);
+  } 
+  else if (activeAlg["quick"]) {
+    curr = [];
+    delay = quickDelayTimes[`${numEls}`];
+    current = quickSort(array, 0, array.length - 1);
+    iterator = quick(curr);
   }
 
   let intervalId = setInterval(drawLoop, delay);
@@ -226,61 +238,58 @@ function* mergeSort(A) {
 
       merge(A, temp, start, mid, last);
       yield A;
-    }
-
-    if (stop == true) {
-      return;
+      if (stop == true) {
+        return;
+      }
     }
   }
 }
 
 // --- QUICK SORT ---
-function swap(array, a, b){
-  let temp = array[a]; 
-  array[a] = array[b]; 
-  array[b] = temp; 
-  return array;
+function quickSort(arr, left, right) {
+  var len = arr.length,
+    pivot,
+    partitionIndex;
+
+  if (left < right) {
+    pivot = right;
+    partitionIndex = partition(arr, pivot, left, right);
+
+    //sort left and right
+    curr.push(arr.slice());
+    quickSort(arr, left, partitionIndex - 1);
+    quickSort(arr, partitionIndex + 1, right);
+  }
+
+  return arr;
 }
 
-function partition(array, a, b){
-  let x = array[b];
-  let i = (a - 1);
+function partition(arr, pivot, left, right) {
+  var pivotValue = arr[pivot],
+    partitionIndex = left;
 
-  for(j = a; j <= b; j++){
-    if(array[j] <= x){
-      i += 1;
-      array = swap(array, i, j);
+  for (var i = left; i < right; i++) {
+    if (arr[i] < pivotValue) {
+      swap(arr, i, partitionIndex);
+      partitionIndex++;
     }
   }
-  array = swap(array, i + 1, b);
-  return (i + 1);
+  swap(arr, right, partitionIndex);
+  return partitionIndex;
 }
 
-function quickSort(array, a, b){
-  let stack = new Array();
-
-  stack.push(a);
-  stack.push(b);
-
-  while(stack.length >= 0){
-    b = stack.pop();
-    a = stack.pop();
-
-    let p = partition(array, a, b);
-
-    if(p - 1 > a){
-      stack.push(a);
-      stack.push(p - 1)
-    }
-
-    if(p + 1 < b){
-      stack.push(p + 1);
-      stack.push(b);
-    }
-  }  
-  return array;
+function swap(arr, i, j) {
+  var temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
 }
 
-
-arr = [1, 5, 4, 2];
-quickSort(arr, 0, arr.length - 1);
+function* quick(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    yield arr[i];
+    if (stop == true) {
+      return;
+    }
+  }
+  
+}
