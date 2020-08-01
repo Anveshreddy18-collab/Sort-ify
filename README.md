@@ -5,7 +5,7 @@ A static site written in Javascript that visualizes popular sorting algorithms.
 Sortify is JS app that is meant to convey the important concepts behind sorting algorithms. The app's main feature is it's sorting visualizer which currently supports Bubble Sort, Merge Sort, and Quick Sort. It offers varying array lengths for the visualization and boasts a clean UI to help the client understand the broader CS concept of sorting. It also houses an auxiliary page with an overview of this information on these algorithms as well as a list of resources that were helpful in the creation of the projects  
 Landing Page             |  Visualizer
 :-------------------------:|:-------------------------:
-![](https://www.dropbox.com/s/9wfu1mpxx39qbyj/Landing.png?dl=0)  |  ![](https://www.dropbox.com/s/erqicrzfrnv2dw7/App.png?dl=0)
+![](https://dl.dropboxusercontent.com/s/9wfu1mpxx39qbyj/Landing.png?dl=0)  |  ![](https://dl.dropboxusercontent.com/s/erqicrzfrnv2dw7/App.png?dl=0)
 
 ## Features
 * UI written in modern __React__, using ES6 principles and functional components with React Hooks
