@@ -1,16 +1,35 @@
 # Sort-ify
-Sort-ify is a static site built to visualize popular sorting algorithms such as Bubble, Merge, and Quick sort.
+A static site written in Javascript that visualizes popular sorting algorithms.
 
-* This project is written in vanilla Javascript and custom HTML and CSS.
-* The project implement three main sorting algorithms:
-  1. Bubble Sort
-  2. Merge Sort
-  3. Quick Sort
-  
-* It implements these algorithms in specific because they are some of the most important
-  * Bubble Sort is the most basic, and important to understand.
-  * Merge Sort is an important algorithm to conceptualize and it is also quite efficient.
-  * Quick Sort seems to be the pinnacle of effective sorting. Many modern languages use some form of it as their built-in sort method.
-  
+## Description
+Sortify is JS app that is meant to convey the important concepts behind sorting algorithms. The app's main feature is it's sorting visualizer which currently supports Bubble Sort, Merge Sort, and Quick Sort. It offers varying array lengths for the visualization and boasts a clean UI to help the client understand the broader CS concept of sorting. It also houses an auxiliary page with an overview of this information on these algorithms as well as a list of resources that were helpful in the creation of the projects  
+Landing Page             |  Visualizer
+:-------------------------:|:-------------------------:
+![](https://www.dropbox.com/s/9wfu1mpxx39qbyj/Landing.png?dl=0)  |  ![](https://www.dropbox.com/s/erqicrzfrnv2dw7/App.png?dl=0)
+
+## Features
+* UI written in modern __React__, using ES6 principles and functional components with React Hooks
+* Local frontend state management with the Context API
+* UI written exclusively with custom CSS styling 
+* Bootstrapped with create-react-app
+* Backend written in __NodeJS/Express__
+* Relational data storage with __PostgreSQL__
+* User details managed with HTTPS REST architecture
+* Sessions managed with local storage
+
+## Installation
+* Install PostgreSQL and create a db named trelloclone and create tables with queries in ```server\data.sql```
+* Clone this repository ```https://github.com/jackbisceglia/trello-clone.git```
+* Update Postgre user details in ```server\db.js```
+* Run ```npm install``` in both ```server``` and ```react-frontend ``` to install dependencies
+* cd into ```server``` and ```react-frontend```, and ```npm start``` respectively to spin API and Frotend servers
+* Frontend should be running on ```http://localhost:3000``` and Express API on ```http://localhost:5000```
+
+## Live App
+https://trello-clone-jackb.netlify.app/
+Sign up or use demo account:
+* __Email__: demo@gmail.com
+* __Password__ Demo123 (case-sensitive)
+
   # Access
   Sort-ify is available at https://jackbisceglia.github.io/Sort-ify/
