@@ -1,5 +1,5 @@
 # Sort-ify
-Sort-ify is a site meant to visualize popular sorting algorithms such as Bubble, Merge, and Quick sort.
+Sort-ify is a static site built to visualize popular sorting algorithms such as Bubble, Merge, and Quick sort.
 
 * This project is written in vanilla Javascript and custom HTML and CSS.
 * The project implement three main sorting algorithms:
